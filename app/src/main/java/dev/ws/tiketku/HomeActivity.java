@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,9 +21,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAnalytics firebaseAnalytics;
 
-    LinearLayout btn_ticket_pisa;
+    LinearLayout btn_ticket_pisa,btn_ticket_torri,btn_ticket_pagoda,btn_ticket_candi,btn_ticket_spinx,btn_ticket_monas;
     ImageView iv_photo_profile;
     TextView tv_nama_lengkap,tv_bio,tv_user_balance;
 
@@ -36,10 +38,23 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         getUsernameLocal();
 
         btn_ticket_pisa = findViewById(R.id.btn_ticket_pisa);
+        btn_ticket_pisa.setOnClickListener(this);
+        btn_ticket_torri = findViewById(R.id.btn_ticket_torri);
+        btn_ticket_torri.setOnClickListener(this);
+        btn_ticket_pagoda = findViewById(R.id.btn_ticket_pagoda);
+        btn_ticket_pagoda.setOnClickListener(this);
+        btn_ticket_candi = findViewById(R.id.btn_ticket_candi);
+        btn_ticket_candi.setOnClickListener(this);
+        btn_ticket_spinx = findViewById(R.id.btn_ticket_spinx);
+        btn_ticket_spinx.setOnClickListener(this);
+        btn_ticket_monas = findViewById(R.id.btn_ticket_monas);
+        btn_ticket_monas.setOnClickListener(this);
+
         iv_photo_profile = findViewById(R.id.iv_photo_profile);
         tv_bio = findViewById(R.id.tv_bio);
         tv_nama_lengkap = findViewById(R.id.tv_nama_lengkap);
@@ -50,13 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         getDataFromFirebase();
 
 
-        btn_ticket_pisa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,TicketDetailActivity.class);
-                startActivity(intent);
-            }
-        });
+        btn_ticket_pisa.setOnClickListener(this);
         iv_photo_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,5 +106,37 @@ public class HomeActivity extends AppCompatActivity {
         tv_bio.setText(bio);
         tv_user_balance.setText(mata_uang+user_balance);
         Picasso.with(HomeActivity.this).load(url_photo_profile).centerCrop().fit().into(iv_photo_profile);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_ticket_pisa:
+                ticketOnClick("Pisa");
+                break;
+            case R.id.btn_ticket_torri:
+                ticketOnClick("Torri");
+                break;
+            case R.id.btn_ticket_pagoda:
+                ticketOnClick("Pagoda");
+                break;
+            case R.id.btn_ticket_candi:
+                ticketOnClick("Candi");
+                break;
+            case R.id.btn_ticket_spinx:
+                ticketOnClick("Spinx");
+                break;
+            case R.id.btn_ticket_monas:
+                ticketOnClick("Monas");
+                break;
+        }
+
+    }
+
+    private void ticketOnClick(String s){
+        Intent intent = new Intent(HomeActivity.this,TicketDetailActivity.class);
+        //setValue To Intent
+        intent.putExtra("jenis_tiket",s);
+        startActivity(intent);
     }
 }

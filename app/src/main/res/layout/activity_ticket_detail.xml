@@ -15,7 +15,6 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bgheader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +27,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/mregular"
-        android:text="Menara Pisa"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="24sp"
@@ -45,7 +44,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/mlight"
         android:lineSpacingExtra="9dp"
-        android:text="Pisa City, Italy"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="20sp"
@@ -121,7 +120,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mmedium"
-                    android:text="4 Photo Spots"
+                    android:text=""
                     android:textColor="@color/blackPrimary"
                     android:textSize="16sp" />
                 <TextView
@@ -160,7 +159,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mmedium"
-                    android:text="WiFi Avaliable"
+                    android:text=""
                     android:textColor="@color/blackPrimary"
                     android:textSize="16sp" />
                 <TextView
@@ -199,7 +198,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/mmedium"
-                    android:text="13 Festival"
+                    android:text=""
                     android:textColor="@color/blackPrimary"
                     android:textSize="16sp" />
                 <TextView
@@ -214,11 +213,12 @@
             </LinearLayout>
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_short_desc"
             android:lineSpacingExtra="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mlight"
-            android:text="The learning of the Tower of Pisa comes into the story in 1173"
+            android:text=""
             android:textColor="@color/grayPrimary"
             android:textSize="18sp"/>
     </LinearLayout>

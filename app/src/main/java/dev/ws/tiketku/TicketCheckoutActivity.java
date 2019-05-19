@@ -13,7 +13,7 @@ public class TicketCheckoutActivity extends AppCompatActivity {
 
     LinearLayout btn_back, iv_alert_balance;
     Button btn_buy_ticket,btn_plus,btn_minus;
-    TextView tv_total_ticket, tv_my_balace, tv_total_price;
+    TextView tv_total_ticket, tv_my_balance, tv_total_price;
     Integer valueTotalTicket = 1;
     Integer mybalance = 329;
     Integer totalharga = 0;
@@ -31,7 +31,7 @@ public class TicketCheckoutActivity extends AppCompatActivity {
         tv_total_ticket = findViewById(R.id.tv_total_ticket);
         btn_back = findViewById(R.id.btn_back);
         btn_buy_ticket = findViewById(R.id.btn_buy_ticket);
-        tv_my_balace = findViewById(R.id.tv_my_balance);
+        tv_my_balance = findViewById(R.id.tv_my_balance);
         tv_total_price = findViewById(R.id.tv_total_price);
         iv_alert_balance = findViewById(R.id.iv_alert_balance);
 
@@ -39,7 +39,7 @@ public class TicketCheckoutActivity extends AppCompatActivity {
         tv_total_ticket.setText(valueTotalTicket.toString());
         totalharga = hargatiket*valueTotalTicket;
         tv_total_price.setText("$ "+ totalharga.toString());
-        tv_my_balace.setText("$ "+mybalance.toString());
+        tv_my_balance.setText("$ "+mybalance.toString());
         iv_alert_balance.setVisibility(View.GONE);
 
         btn_minus.setAlpha(0);
@@ -69,7 +69,7 @@ public class TicketCheckoutActivity extends AppCompatActivity {
                             .setDuration(200)
                             .start();
                     btn_buy_ticket.setEnabled(true);
-                    tv_my_balace.setTextColor(getResources().getColor(R.color.bluePrimary));
+                    tv_my_balance.setTextColor(getResources().getColor(R.color.bluePrimary));
                     iv_alert_balance.setVisibility(View.GONE);
                 }
             }
@@ -92,7 +92,7 @@ public class TicketCheckoutActivity extends AppCompatActivity {
                             .setDuration(200)
                             .start();
                     btn_buy_ticket.setEnabled(false);
-                    tv_my_balace.setTextColor(getResources().getColor(R.color.colorAccent));
+                    tv_my_balance.setTextColor(getResources().getColor(R.color.colorAccent));
                     iv_alert_balance.setVisibility(View.VISIBLE);
                 }
             }
