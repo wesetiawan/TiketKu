@@ -128,6 +128,7 @@ public class SignInActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(username_key, et_username.getText().toString());
         editor.apply();
+        editor.commit();
     }
 
     private void loginErrorAction(View v, String s) {
