@@ -10,11 +10,14 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,6 +36,7 @@ public class RegisterTwoActivity extends AppCompatActivity {
     Button btnContinue,btnSelfie;
     EditText et_nama_lengkap, et_bio;
     ImageView iv_profile_pic;
+    Animation btt,shake;
 
     Uri photo_location;
     Integer photo_max = 1;
@@ -55,6 +59,8 @@ public class RegisterTwoActivity extends AppCompatActivity {
         et_nama_lengkap = findViewById(R.id.et_nama_lengkap);
         et_bio = findViewById(R.id.et_bio);
         iv_profile_pic = findViewById(R.id.iv_profile_pic);
+        btt = AnimationUtils.loadAnimation(this,R.anim.btt);
+        shake = AnimationUtils.loadAnimation(this,R.anim.shake);
 
 
 
@@ -146,5 +152,12 @@ public class RegisterTwoActivity extends AppCompatActivity {
     public void getUsernameLocal(){
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY,MODE_PRIVATE);
         username_key_new = sharedPreferences.getString(username_key, "");
+    }
+
+    private void registerErrorAction(View v, String s){
+        Toast.makeText(getApplicationContext(),"s",Toast.LENGTH_SHORT).show();
+        v.startAnimation(shake);
+        btnContinue.setEnabled(true);
+        btnContinue.setText("CONTINUE");
     }
 }
