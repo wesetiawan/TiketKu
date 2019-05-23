@@ -76,15 +76,39 @@
                 android:text="@string/password_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <EditText
-                android:id="@+id/et_password"
-                android:lines="1"
-                android:paddingLeft="12dp"
-                android:inputType="textPassword"
-                android:textColor="@color/blackPrimary"
-                android:background="@drawable/bg_input_edit"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="50dp">
+                <EditText
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_password"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/et_password"
+                    android:inputType="textPassword"
+                    android:paddingLeft="12dp"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/blackPrimary"
+                    android:background="@drawable/bg_input_edit"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/btn_password"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:id="@+id/tv_btn_password"
+                        android:gravity="center"
+                        android:text="🙈"
+                        android:textSize="30sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

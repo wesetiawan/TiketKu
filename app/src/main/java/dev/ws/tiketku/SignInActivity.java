@@ -3,14 +3,20 @@ package dev.ws.tiketku;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,16 +28,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
 
-    TextView tvNewAccount;
+    TextView tvNewAccount,tv_btn_password;
     EditText et_username, et_password;
     Button btn_signIn;
     Animation btt, shake;
-
+    LinearLayout btn_password;
     DatabaseReference reference;
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +47,12 @@ public class SignInActivity extends AppCompatActivity {
         et_username = findViewById(R.id.et_username);
         btn_signIn = findViewById(R.id.btn_signIn);
         tvNewAccount = findViewById(R.id.tv_new_account);
+        btn_password = findViewById(R.id.btn_password);
+        tv_btn_password = findViewById(R.id.tv_btn_password);
         btt = AnimationUtils.loadAnimation(this, R.anim.btt);
         shake = AnimationUtils.loadAnimation(this, R.anim.shake);
 
+        btn_password.setOnTouchListener(showpwd);
 
         btn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +114,20 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
     }
+
+    private View.OnTouchListener showpwd = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN){
+                tv_btn_password.setText("🐵");
+                et_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }else if (event.getAction() == MotionEvent.ACTION_UP){
+                tv_btn_password.setText("🙈");
+                et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
+            return true;
+        }
+    };
 
     private Boolean usernameIsValid() {
         if (et_username.getText().toString().equals("")) {

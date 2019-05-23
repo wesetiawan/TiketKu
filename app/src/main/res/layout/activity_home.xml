@@ -82,6 +82,8 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/mmedium"
                 android:text=""
+                android:maxWidth="230dp"
+                android:maxHeight="28dp"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/view_circle"

@@ -35,6 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+        //getUsernameLocal();
 
         app_splash = AnimationUtils.loadAnimation(this, R.anim.app_splash);
         btt = AnimationUtils.loadAnimation(this, R.anim.btt);
@@ -45,12 +46,21 @@ public class SplashScreenActivity extends AppCompatActivity {
         iv_logo.startAnimation(app_splash);
         tv_logo.startAnimation(btt);
 
-        getDataFromFirebase();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreenActivity.this, GetStartedActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+                //getDataFromFirebase();
+            }
+        },100);
+
     }
 
     private void getDataFromFirebase(){
-        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY,MODE_PRIVATE);
-        username_key_new = sharedPreferences.getString(username_key, "");
         reference = FirebaseDatabase.getInstance().getReference()
                 .child("Users")
                 .child(username_key);
@@ -59,6 +69,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    username_key_new = dataSnapshot.getValue().toString();
+                    saveUsernameToLocal();
                     Intent intent = new Intent(SplashScreenActivity.this, HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -76,6 +88,19 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finishAndRemoveTask();
             }
         });
+    }
+
+    private void saveUsernameToLocal() {
+        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(username_key, username_key_new);
+        editor.apply();
+        editor.commit();
+    }
+
+    private void getUsernameLocal(){
+        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY,MODE_PRIVATE);
+        username_key_new = sharedPreferences.getString(username_key, "");
     }
 
 

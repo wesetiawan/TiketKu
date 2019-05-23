@@ -91,7 +91,7 @@ public class RegisterTwoActivity extends AppCompatActivity {
                 storageReference = FirebaseStorage.getInstance().getReference()
                         .child("Photousers").child(username_key_new);
 
-                //validasi file apakah ada
+                //validasi foto apakah file ada
                 if (photo_location != null) {
                     final StorageReference fileName =
                             storageReference.child(System.currentTimeMillis() + "." +
@@ -180,10 +180,4 @@ public class RegisterTwoActivity extends AppCompatActivity {
         username_key_new = sharedPreferences.getString(username_key, "");
     }
 
-    private void registerErrorAction(View v, String s) {
-        Toast.makeText(getApplicationContext(), "s", Toast.LENGTH_SHORT).show();
-        v.startAnimation(shake);
-        btnContinue.setEnabled(true);
-        btnContinue.setText("CONTINUE");
-    }
 }

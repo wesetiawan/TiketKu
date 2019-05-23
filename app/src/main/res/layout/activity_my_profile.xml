@@ -53,22 +53,22 @@
         app:layout_constraintTop_toTopOf="@+id/view_circle">
 
         <ImageView
-            android:id="@+id/iv_profile_pic"
+            android:id="@+id/iv_photo_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/fotoku" />
+            android:src="@drawable/icon_nopic" />
     </com.github.florent37.shapeofview.shapes.CircleView>
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_nama_lengkap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/mregular"
-        android:text="Wawan Eka S"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="24sp"
@@ -85,15 +85,15 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/mlight"
         android:lineSpacingExtra="9dp"
-        android:text="Sleep"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_nama_lengkap" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_ticket_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,138 +136,13 @@
             android:layout_marginBottom="16dp"
             android:background="#ededed" />
 
-        <LinearLayout
-            android:id="@+id/ll_ticket1"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_myticket_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:layout_height="130dp"/>
 
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_weight="0.1"
-                android:src="@drawable/ic_ticket_buy" />
 
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_weight="0.8"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mmedium"
-                    android:text="Menara Pisa"
-                    android:textColor="@color/blackPrimary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/mlight"
-                    android:text="Pisa City, Italy"
-                    android:textColor="@color/grayPrimary"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_weight="0.1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mlight"
-                    android:text="3"
-                    android:textColor="@color/bluePrimary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mlight"
-                    android:text=" Tickets"
-                    android:textColor="@color/bluePrimary" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_weight="0.1"
-                android:src="@drawable/ic_ticket_buy" />
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_weight="0.8"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_photo_spot_ticket"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mmedium"
-                    android:text="Menara Pisa"
-                    android:textColor="@color/blackPrimary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_photo_spot_ticket_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/mlight"
-                    android:text="Pisa City, Italy"
-                    android:textColor="@color/grayPrimary"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_weight="0.1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mlight"
-                    android:text="3"
-                    android:textColor="@color/bluePrimary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mlight"
-                    android:text=" Tickets"
-                    android:textColor="@color/bluePrimary" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
         android:id="@+id/btn_edit_profile"
