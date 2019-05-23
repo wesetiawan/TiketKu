@@ -37,8 +37,6 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     ArrayList<MyTicket> list;
     TicketAdapter ticketAdapter;
 
-    String nama_lengkap,bio,url_photo_profile;
-
     DatabaseReference referenceUser, referenceMyTicket;
     String USERNAME_KEY ="usernamekey";
     String username_key = "";
@@ -49,11 +47,12 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
         getUsernameLocal();
-        getUserDataFromFirebase();
+
 
         btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
         btn_signOut = findViewById(R.id.btn_signOut);
+        btn_signOut.setOnClickListener(this);
         btn_edit_profile = findViewById(R.id.btn_edit_profile);
         btn_edit_profile.setOnClickListener(this);
         iv_photo_profile = findViewById(R.id.iv_photo_profile);
@@ -61,23 +60,30 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         tv_bio = findViewById(R.id.tv_bio);
         rv_myticket_container = findViewById(R.id.rv_myticket_container);
 
-        updateViewFromFireBase();
+        getUserDataFromFirebase();
         getMyTicket();
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_signOut:
+                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY,MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(username_key, null);
+                editor.apply();
+
+                Intent signOut = new Intent(MyProfileActivity.this,SignInActivity.class);
+                signOut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(signOut);
+                finish();
                 break;
             case R.id.btn_back:
                 onBackPressed();
                 break;
             case R.id.btn_edit_profile:
-                Intent intent = new Intent(MyProfileActivity.this,EditProfileActivity.class);
-                startActivity(intent);
+                Intent editProfile = new Intent(MyProfileActivity.this,EditProfileActivity.class);
+                startActivity(editProfile);
                 break;
 
         }
@@ -92,13 +98,14 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         referenceUser = FirebaseDatabase.getInstance().getReference()
                 .child("Users")
                 .child(username_key_new);
-        referenceUser.addListenerForSingleValueEvent(new ValueEventListener() {
+        referenceUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                nama_lengkap = Objects.requireNonNull(dataSnapshot.child("nama_lengkap").getValue()).toString();
-                bio = Objects.requireNonNull(dataSnapshot.child("bio").getValue()).toString();
-                url_photo_profile = Objects.requireNonNull(dataSnapshot.child("url_photo_profile").getValue()).toString();
-                updateViewFromFireBase();
+                tv_nama_lengkap.setText(Objects.requireNonNull(dataSnapshot.child("nama_lengkap").getValue()).toString());
+                tv_bio.setText(Objects.requireNonNull(dataSnapshot.child("bio").getValue()).toString());
+                Picasso.with(MyProfileActivity.this)
+                        .load(Objects.requireNonNull(dataSnapshot.child("url_photo_profile")
+                                .getValue()).toString()).centerCrop().fit().into(iv_photo_profile);
             }
 
             @Override
@@ -133,12 +140,6 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-
-    private void updateViewFromFireBase(){
-        tv_nama_lengkap.setText(nama_lengkap);
-        tv_bio.setText(bio);
-        Picasso.with(MyProfileActivity.this).load(url_photo_profile).centerCrop().fit().into(iv_photo_profile);
-    }
 
 
 }

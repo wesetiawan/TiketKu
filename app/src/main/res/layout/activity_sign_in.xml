@@ -102,8 +102,9 @@
                     <TextView
                         android:id="@+id/tv_btn_password"
                         android:gravity="center"
+                        android:textColor="#FFFF"
                         android:text="🙈"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
