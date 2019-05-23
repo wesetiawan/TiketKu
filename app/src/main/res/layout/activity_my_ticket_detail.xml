@@ -53,7 +53,6 @@
             android:id="@+id/ll_ticket"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="18dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -67,7 +66,7 @@
             <LinearLayout
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="8dp"
                 android:layout_weight="0.8"
                 android:orientation="vertical">
 
@@ -205,11 +204,9 @@
                 android:textSize="16sp" />
         </LinearLayout>
         <ImageView
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:src="@drawable/ic_barcode"
+            android:id="@+id/iv_barcode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="100dp" />
     </LinearLayout>
 
     <Button

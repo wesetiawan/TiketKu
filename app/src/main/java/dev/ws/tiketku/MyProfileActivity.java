@@ -126,6 +126,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         referenceMyTicket.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     MyTicket p = dataSnapshot1.getValue(MyTicket.class);
                     list.add(p);

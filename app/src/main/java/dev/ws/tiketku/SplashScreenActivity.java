@@ -11,15 +11,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-
 public class SplashScreenActivity extends AppCompatActivity {
 
     Animation app_splash, btt;
     ImageView iv_logo;
     TextView tv_logo;
 
-    DatabaseReference reference;
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";

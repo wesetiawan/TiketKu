@@ -44,7 +44,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
         holder.tv_nama_wisata.setText(myTicket.get(position).getNama_wisata());
         holder.tv_jumlah_tiket.setText(myTicket.get(position).getJumlah_tiket());
 
-        final String getIdTiket = myTicket.get(position).getId_tiket();
+        final String getIdTiket = myTicket.get(position).getId_tiket().toString();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
